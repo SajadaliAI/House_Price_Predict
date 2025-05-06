@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Predictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .main-container {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .custom-input, .submit-btn {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+    .submit-btn {
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <center><h1>🏡 House Price Predictor</h1>
+    <div class="developer">✨ Developed by <span class="name">Sajad Ali</span> 🚀</div></center>
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" class="custom-input" name="Location" placeholder="Enter Location (e.g., Mumbai)" required>
+      <input type="number" class="custom-input" name="Area" placeholder="Enter Area in sqft" required>
+      <input type="number" class="custom-input" name="Bathrooms" placeholder="No. of Bathrooms" required>
+      <input type="number" class="custom-input" name="BHK" placeholder="BHK (1/2/3)" required>
+      <button type="submit" class="submit-btn">Predict Price</button>
+    </form>
+    {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
